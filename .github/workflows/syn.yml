@@ -9,15 +9,15 @@ jobs:
     sync:
         runs-on: ubuntu-latest
         steps:
-        - name: Checkout code
-            uses: actions/checkout@v2
-            with:
+            - name: Checkout code
+              uses: actions/checkout@v2
+              with:
                 fetch-depth: 0  # 获取所有历史提交
 
-        - name: Sync upstream
-            run: |
-                git remote add upstream https://github.com/jaywcjlove/reference.git
-                git fetch upstream
-                git checkout gh-pages
-                git merge upstream/gh-pages
-                git push origin gh-pages
+            - name: Sync upstream
+              run: |
+                    git remote add upstream https://github.com/jaywcjlove/reference.git
+                    git fetch upstream
+                    git checkout gh-pages
+                    git merge upstream/gh-pages
+                    git push origin gh-pages
