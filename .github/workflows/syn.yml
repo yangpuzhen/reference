@@ -1,0 +1,23 @@
+name: Sync Upstream
+
+on:
+    schedule:
+        - cron: '30 4 * * *'  # 每天 UTC 时间 4:30 运行
+    workflow_dispatch:  # 允许手动触发
+
+jobs:
+    sync:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout code
+            uses: actions/checkout@v2
+            with:
+                fetch-depth: 0  # 获取所有历史提交
+
+        - name: Sync upstream
+            run: |
+                git remote add upstream https://github.com/jaywcjlove/reference.git
+                git fetch upstream
+                git checkout gh-pages
+                git merge upstream/gh-pages
+                git push origin gh-pages
